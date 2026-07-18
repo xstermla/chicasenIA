@@ -1,10 +1,12 @@
 import Link from "next/link";
+import BrandHeader from "@/components/BrandHeader";
 
 export default function LandingPage() {
   return (
     <main className="flex flex-1 flex-col items-center justify-center px-6 py-12">
       <div className="w-full max-w-md text-center">
-        <p className="text-sm font-semibold uppercase tracking-wide text-brand">
+        <BrandHeader />
+        <p className="mt-6 text-sm font-semibold uppercase tracking-wide text-brand">
           Chicas en IA
         </p>
         <h1 className="mt-2 text-3xl font-bold leading-tight">

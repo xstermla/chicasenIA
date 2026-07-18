@@ -1,32 +1,58 @@
 "use server";
 
-import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { generarAccessCode } from "@/lib/access-code";
-import type { CohortPublic, InstitutionPublic } from "@/lib/database.types";
 
-export async function listInstituciones(): Promise<InstitutionPublic[]> {
-  const supabase = await createClient();
-  const { data, error } = await supabase
-    .from("institutions_public")
-    .select("id, name")
-    .order("name");
+// La cohorte no se le pide al equipo: todas las instituciones que se
+// registran hoy caen en la cohorte "2026" (se crea sola la primera vez
+// que una institución se registra).
+const COHORTE_ACTUAL = "2026";
 
-  if (error) throw error;
-  return data ?? [];
+async function obtenerOCrearInstitucion(
+  admin: ReturnType<typeof createAdminClient>,
+  nombre: string
+): Promise<{ id: string } | { error: string }> {
+  const { data: existente, error: buscarError } = await admin
+    .from("institutions")
+    .select("id")
+    .ilike("name", nombre)
+    .maybeSingle();
+
+  if (buscarError) return { error: "No pudimos validar la institución. Probá de nuevo." };
+  if (existente) return { id: existente.id };
+
+  const { data: nueva, error: crearError } = await admin
+    .from("institutions")
+    .insert({ name: nombre })
+    .select("id")
+    .single();
+
+  if (crearError || !nueva) return { error: "No pudimos crear la institución. Probá de nuevo." };
+  return { id: nueva.id };
 }
 
-export async function listCohortes(institutionId: string): Promise<CohortPublic[]> {
-  if (!institutionId) return [];
-  const supabase = await createClient();
-  const { data, error } = await supabase
-    .from("cohorts_public")
-    .select("id, institution_id, name, demo_day_date")
+async function obtenerOCrearCohorte(
+  admin: ReturnType<typeof createAdminClient>,
+  institutionId: string
+): Promise<{ id: string } | { error: string }> {
+  const { data: existente, error: buscarError } = await admin
+    .from("cohorts")
+    .select("id")
     .eq("institution_id", institutionId)
-    .order("name");
+    .eq("name", COHORTE_ACTUAL)
+    .maybeSingle();
 
-  if (error) throw error;
-  return data ?? [];
+  if (buscarError) return { error: "No pudimos validar la cohorte. Probá de nuevo." };
+  if (existente) return { id: existente.id };
+
+  const { data: nueva, error: crearError } = await admin
+    .from("cohorts")
+    .insert({ institution_id: institutionId, name: COHORTE_ACTUAL })
+    .select("id")
+    .single();
+
+  if (crearError || !nueva) return { error: "No pudimos crear la cohorte. Probá de nuevo." };
+  return { id: nueva.id };
 }
 
 export interface RegistrarEquipoState {
@@ -41,7 +67,7 @@ export async function registrarEquipo(
   formData: FormData
 ): Promise<RegistrarEquipoState> {
   const teamName = String(formData.get("team_name") ?? "").trim();
-  const cohortId = String(formData.get("cohort_id") ?? "").trim();
+  const institutionName = String(formData.get("institution") ?? "").trim();
   const membersRaw = String(formData.get("members") ?? "");
 
   const members = membersRaw
@@ -52,14 +78,20 @@ export async function registrarEquipo(
   if (!teamName) {
     return { success: false, error: "Falta el nombre del equipo." };
   }
-  if (!cohortId) {
-    return { success: false, error: "Elegí la institución y la cohorte." };
+  if (!institutionName) {
+    return { success: false, error: "Falta el nombre de la institución." };
   }
   if (members.length === 0) {
     return { success: false, error: "Sumá al menos una integrante del equipo." };
   }
 
   const admin = createAdminClient();
+
+  const institucion = await obtenerOCrearInstitucion(admin, institutionName);
+  if ("error" in institucion) return { success: false, error: institucion.error };
+
+  const cohorte = await obtenerOCrearCohorte(admin, institucion.id);
+  if ("error" in cohorte) return { success: false, error: cohorte.error };
 
   let accessCode = "";
   let teamId: string | null = null;
@@ -69,7 +101,7 @@ export async function registrarEquipo(
     const { data, error } = await admin
       .from("teams")
       .insert({
-        cohort_id: cohortId,
+        cohort_id: cohorte.id,
         team_name: teamName,
         members,
         access_code: accessCode,

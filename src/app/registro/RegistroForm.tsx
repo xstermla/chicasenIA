@@ -1,9 +1,8 @@
 "use client";
 
-import { useActionState, useEffect, useState } from "react";
+import { useActionState, useState } from "react";
 import Link from "next/link";
-import { listCohortes, registrarEquipo, type RegistrarEquipoState } from "./actions";
-import type { CohortPublic, InstitutionPublic } from "@/lib/database.types";
+import { registrarEquipo, type RegistrarEquipoState } from "./actions";
 
 const initialState: RegistrarEquipoState = { success: false };
 
@@ -13,31 +12,9 @@ const hoy = new Date().toLocaleDateString("es-AR", {
   year: "numeric",
 });
 
-export default function RegistroForm({
-  instituciones,
-}: {
-  instituciones: InstitutionPublic[];
-}) {
+export default function RegistroForm() {
   const [state, formAction, pending] = useActionState(registrarEquipo, initialState);
-  const [institutionId, setInstitutionId] = useState("");
-  const [cohortes, setCohortes] = useState<CohortPublic[]>([]);
   const [copiado, setCopiado] = useState(false);
-
-  useEffect(() => {
-    if (!institutionId) return;
-    let activo = true;
-    listCohortes(institutionId).then((data) => {
-      if (activo) setCohortes(data);
-    });
-    return () => {
-      activo = false;
-    };
-  }, [institutionId]);
-
-  function handleInstitutionChange(nuevoId: string) {
-    setInstitutionId(nuevoId);
-    setCohortes([]);
-  }
 
   if (state.success && state.accessCode) {
     const copiarCodigo = async () => {
@@ -90,43 +67,13 @@ export default function RegistroForm({
         <label htmlFor="institution" className="block text-sm font-semibold">
           Institución
         </label>
-        <select
+        <input
           id="institution"
           name="institution"
           required
-          value={institutionId}
-          onChange={(e) => handleInstitutionChange(e.target.value)}
+          placeholder="Nombre de tu colegio o institución"
           className="mt-1 w-full rounded-lg border border-black/15 px-3 py-3 text-base"
-        >
-          <option value="">Elegí tu institución</option>
-          {instituciones.map((i) => (
-            <option key={i.id} value={i.id}>
-              {i.name}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <div>
-        <label htmlFor="cohort_id" className="block text-sm font-semibold">
-          Cohorte
-        </label>
-        <select
-          id="cohort_id"
-          name="cohort_id"
-          required
-          disabled={!institutionId}
-          className="mt-1 w-full rounded-lg border border-black/15 px-3 py-3 text-base disabled:opacity-50"
-        >
-          <option value="">
-            {institutionId ? "Elegí la cohorte" : "Elegí primero la institución"}
-          </option>
-          {cohortes.map((c) => (
-            <option key={c.id} value={c.id}>
-              {c.name}
-            </option>
-          ))}
-        </select>
+        />
       </div>
 
       <div>
