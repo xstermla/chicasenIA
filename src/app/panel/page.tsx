@@ -16,7 +16,7 @@ export default async function PanelPage() {
               href="/panel/exportar"
               className="rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-dark"
             >
-              Exportar a CSV
+              Exportar a Excel
             </a>
           )}
         </div>

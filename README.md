@@ -83,7 +83,7 @@ de contacto ni permitir instituciones falsas):
 4. Como docente/evaluadora, andá a `/login`, ingresá, y en `/panel` vas a
    ver ese equipo con estado "Enviado". Abrilo, completá la rúbrica (el
    puntaje y la escala se recalculan en vivo) y guardá.
-5. Desde `/panel` (rol docente o admin) probá **Exportar a CSV**.
+5. Desde `/panel` (rol docente o admin) probá **Exportar a Excel**.
 
 ## Estructura del proyecto
 
@@ -96,7 +96,7 @@ src/lib/access-code.ts   Generador del código de acceso de los equipos
 src/app/registro/        Alta de equipo (genera access_code)
 src/app/proyecto/[code]/ Formulario de 5 pasos + pitch + envío (sin Auth, por código)
 src/app/login/           Login docente/evaluadora (Supabase Auth)
-src/app/panel/           Lista de equipos, detalle + rúbrica, export CSV
+src/app/panel/           Lista de equipos, detalle + rúbrica, export a Excel
 src/proxy.ts             Antes "middleware": refresca sesión y protege /panel
 ```
 
