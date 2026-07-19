@@ -19,7 +19,7 @@ export default async function Paso3Page({
       <div className="mx-auto w-full max-w-md px-6">
         <h1 className="text-2xl font-bold">¿Qué haría la IA en tu app?</h1>
         <p className="mt-1 text-foreground/70">
-          Marcá las que aplican (pueden ser varias):
+          Marca las que aplican (pueden ser varias):
         </p>
         {equipo.project.status === "enviado" && <EnviadoBanner />}
         <Paso3Form

@@ -73,21 +73,6 @@ export default async function ProyectoDetallePage({
                 `Se llama así porque ${project.pitch_se_llama_asi_porque}.`}
             </p>
           </div>
-
-          {(project.ods || project.evidencia_indagacion || project.ficha_usuario || project.prototipo_link) && (
-            <div className="rounded-lg border border-black/10 p-3">
-              <p className="text-xs font-semibold uppercase tracking-wide text-foreground/50">
-                Programa de 4 semanas
-              </p>
-              <div className="mt-2 flex flex-col gap-3">
-                <Campo label="ODS" valor={project.ods} />
-                <Campo label="Evidencia de indagación" valor={project.evidencia_indagacion} />
-                <Campo label="Ficha de usuario" valor={project.ficha_usuario} />
-                <Campo label="Tipo de prototipo" valor={project.prototipo_tipo} />
-                <Campo label="Link del prototipo" valor={project.prototipo_link} />
-              </div>
-            </div>
-          )}
         </div>
 
         <h2 className="mt-8 text-xl font-bold">Rúbrica</h2>

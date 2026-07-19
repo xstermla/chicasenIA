@@ -36,7 +36,7 @@ export default function RegistroForm() {
           {copiado ? "¡Copiado!" : "Copiar"}
         </button>
         <p className="mt-4 text-sm text-foreground/80">
-          Guardá este código, lo vas a necesitar para volver a editar tu
+          Guarda este código, lo vas a necesitar para volver a editar tu
           proyecto.
         </p>
         <Link

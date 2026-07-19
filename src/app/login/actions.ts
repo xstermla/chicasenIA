@@ -13,7 +13,7 @@ export async function login(_prev: LoginState, formData: FormData): Promise<Logi
   const next = String(formData.get("next") ?? "/panel");
 
   if (!email || !password) {
-    return { error: "Completá email y contraseña." };
+    return { error: "Completa email y contraseña." };
   }
 
   const supabase = await createClient();

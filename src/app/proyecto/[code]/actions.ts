@@ -33,7 +33,7 @@ async function actualizarProyecto(
   const equipo = await getEquipoYProyecto(code);
   if (!equipo) return { error: "Código inválido." };
   if (equipo.project.status === "enviado") {
-    return { error: "Este proyecto ya fue enviado. Pedile a tu docente que lo reabra para editarlo." };
+    return { error: "Este proyecto ya fue enviado. Pídele a tu docente que lo reabra para editarlo." };
   }
 
   const admin = createAdminClient();
@@ -42,7 +42,7 @@ async function actualizarProyecto(
     .update(patch)
     .eq("team_id", equipo.team.id);
 
-  if (error) return { error: "No pudimos guardar. Probá de nuevo." };
+  if (error) return { error: "No pudimos guardar. Prueba de nuevo." };
   return {};
 }
 
@@ -113,7 +113,7 @@ async function validarYEnviar(code: string): Promise<EnviarState> {
   if (!nombre_app) faltantes.push("el nombre de la app (paso 5)");
 
   if (faltantes.length) {
-    return { error: `Antes de enviar, completá: ${faltantes.join(", ")}.` };
+    return { error: `Antes de enviar, completa: ${faltantes.join(", ")}.` };
   }
 
   const admin = createAdminClient();
@@ -122,7 +122,7 @@ async function validarYEnviar(code: string): Promise<EnviarState> {
     .update({ status: "enviado", submitted_at: new Date().toISOString() })
     .eq("team_id", equipo.team.id);
 
-  if (error) return { error: "No pudimos enviar el proyecto. Probá de nuevo." };
+  if (error) return { error: "No pudimos enviar el proyecto. Prueba de nuevo." };
 
   redirect(`/proyecto/${code}/gracias`);
 }
@@ -132,19 +132,12 @@ export async function enviarProyecto(code: string, _prev: EnviarState): Promise<
 }
 
 export async function guardarPitch(code: string, _prev: GuardarState, formData: FormData) {
-  const prototipoTipo = campoTexto(formData, "prototipo_tipo");
-
   const { error } = await actualizarProyecto(code, {
     pitch_se_llama: campoTexto(formData, "pitch_se_llama"),
     pitch_la_creamos_para: campoTexto(formData, "pitch_la_creamos_para"),
     pitch_problema_resuelve: campoTexto(formData, "pitch_problema_resuelve"),
     pitch_ia_adentro: campoTexto(formData, "pitch_ia_adentro"),
     pitch_se_llama_asi_porque: campoTexto(formData, "pitch_se_llama_asi_porque"),
-    ods: campoTexto(formData, "ods"),
-    evidencia_indagacion: campoTexto(formData, "evidencia_indagacion"),
-    ficha_usuario: campoTexto(formData, "ficha_usuario"),
-    prototipo_tipo: (prototipoTipo as Project["prototipo_tipo"]) ?? null,
-    prototipo_link: campoTexto(formData, "prototipo_link"),
   });
   if (error) return { error };
 
@@ -167,12 +160,12 @@ export async function subirBoceto(
   const equipo = await getEquipoYProyecto(code);
   if (!equipo) return { error: "Código inválido." };
   if (equipo.project.status === "enviado") {
-    return { error: "Este proyecto ya fue enviado. Pedile a tu docente que lo reabra para editarlo." };
+    return { error: "Este proyecto ya fue enviado. Pídele a tu docente que lo reabra para editarlo." };
   }
 
   const file = formData.get("boceto");
   if (!(file instanceof File) || file.size === 0) {
-    return { error: "Elegí o sacá una foto del boceto." };
+    return { error: "Elige o toma una foto del boceto." };
   }
   if (!file.type.startsWith("image/")) {
     return { error: "El archivo tiene que ser una imagen." };
@@ -189,7 +182,7 @@ export async function subirBoceto(
     .from("bocetos")
     .upload(path, file, { contentType: file.type, upsert: false });
 
-  if (uploadError) return { error: "No pudimos subir la imagen. Probá de nuevo." };
+  if (uploadError) return { error: "No pudimos subir la imagen. Prueba de nuevo." };
 
   const { error: updateError } = await admin
     .from("projects")

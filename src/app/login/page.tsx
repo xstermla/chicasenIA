@@ -14,7 +14,7 @@ export default async function LoginPage({
         <BrandHeader compact />
         <h1 className="mt-4 text-2xl font-bold">Soy docente / evaluadora</h1>
         <p className="mt-2 text-sm text-foreground/70">
-          Ingresá con el mismo email que usás en IBM SkillsBuild y la
+          Ingresa con el mismo email que usas en IBM SkillsBuild y la
           contraseña que te dieron desde tu institución.
         </p>
         <LoginForm next={next ?? "/panel"} />

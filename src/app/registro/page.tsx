@@ -8,7 +8,7 @@ export default function RegistroPage() {
         <BrandHeader compact />
         <h1 className="mt-4 text-2xl font-bold">Registrar mi equipo</h1>
         <p className="mt-2 text-sm text-foreground/70">
-          Completá estos datos para crear el proyecto de tu equipo.
+          Completa estos datos para crear el proyecto de tu equipo.
         </p>
 
         <RegistroForm />

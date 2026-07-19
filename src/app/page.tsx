@@ -13,7 +13,7 @@ export default function LandingPage() {
           Chicas en IA — Mi idea de app con IA
         </h1>
         <p className="mt-4 text-base text-foreground/80">
-          Acá tu equipo puede cargar su idea de app con IA: el problema que
+          Aquí tu equipo puede cargar su idea de app con IA: el problema que
           eligieron, para quién la pensaron, qué haría la inteligencia
           artificial y cómo se ve su primera pantalla.
         </p>

@@ -23,7 +23,7 @@ export async function guardarEvaluacion(
   const {
     data: { user },
   } = await supabase.auth.getUser();
-  if (!user) return { error: "Tu sesión expiró. Volvé a ingresar." };
+  if (!user) return { error: "Tu sesión expiró. Vuelve a ingresar." };
 
   const scores = {
     score_eje1: nivelValido(formData.get("score_eje1")),
@@ -55,7 +55,7 @@ export async function guardarEvaluacion(
         .from("evaluations")
         .insert({ project_id: projectId, evaluator_id: user.id, ...scores, ...feedback });
 
-  if (error) return { error: "No pudimos guardar la evaluación. Probá de nuevo." };
+  if (error) return { error: "No pudimos guardar la evaluación. Prueba de nuevo." };
 
   revalidatePath(`/panel/proyecto/${projectId}`);
   revalidatePath("/panel");
@@ -74,7 +74,7 @@ export async function reabrirProyecto(
   const {
     data: { user },
   } = await supabase.auth.getUser();
-  if (!user) return { error: "Tu sesión expiró. Volvé a ingresar." };
+  if (!user) return { error: "Tu sesión expiró. Vuelve a ingresar." };
 
   const { data: profile } = await supabase.from("profiles").select("role").eq("id", user.id).single();
   if (profile?.role === "evaluadora") {
@@ -86,7 +86,7 @@ export async function reabrirProyecto(
     .update({ status: "borrador" })
     .eq("id", projectId);
 
-  if (error) return { error: "No pudimos reabrir el proyecto. Probá de nuevo." };
+  if (error) return { error: "No pudimos reabrir el proyecto. Prueba de nuevo." };
 
   revalidatePath(`/panel/proyecto/${projectId}`);
   revalidatePath("/panel");

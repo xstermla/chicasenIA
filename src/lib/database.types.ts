@@ -1,5 +1,5 @@
 // Tipos manuales que reflejan supabase/01_schema.sql.
-// Si en el futuro corrés `supabase gen types typescript`, podés reemplazar
+// Si en el futuro corres `supabase gen types typescript`, puedes reemplazar
 // este archivo por el generado (la forma es compatible).
 //
 // Nota importante: dentro de `Database`, Row/Insert/Update de cada tabla

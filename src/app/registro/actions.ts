@@ -18,7 +18,7 @@ async function obtenerOCrearInstitucion(
     .ilike("name", nombre)
     .maybeSingle();
 
-  if (buscarError) return { error: "No pudimos validar la institución. Probá de nuevo." };
+  if (buscarError) return { error: "No pudimos validar la institución. Prueba de nuevo." };
   if (existente) return { id: existente.id };
 
   const { data: nueva, error: crearError } = await admin
@@ -27,7 +27,7 @@ async function obtenerOCrearInstitucion(
     .select("id")
     .single();
 
-  if (crearError || !nueva) return { error: "No pudimos crear la institución. Probá de nuevo." };
+  if (crearError || !nueva) return { error: "No pudimos crear la institución. Prueba de nuevo." };
   return { id: nueva.id };
 }
 
@@ -42,7 +42,7 @@ async function obtenerOCrearCohorte(
     .eq("name", COHORTE_ACTUAL)
     .maybeSingle();
 
-  if (buscarError) return { error: "No pudimos validar la cohorte. Probá de nuevo." };
+  if (buscarError) return { error: "No pudimos validar la cohorte. Prueba de nuevo." };
   if (existente) return { id: existente.id };
 
   const { data: nueva, error: crearError } = await admin
@@ -51,7 +51,7 @@ async function obtenerOCrearCohorte(
     .select("id")
     .single();
 
-  if (crearError || !nueva) return { error: "No pudimos crear la cohorte. Probá de nuevo." };
+  if (crearError || !nueva) return { error: "No pudimos crear la cohorte. Prueba de nuevo." };
   return { id: nueva.id };
 }
 
@@ -82,7 +82,7 @@ export async function registrarEquipo(
     return { success: false, error: "Falta el nombre de la institución." };
   }
   if (members.length === 0) {
-    return { success: false, error: "Sumá al menos una integrante del equipo." };
+    return { success: false, error: "Suma al menos una integrante del equipo." };
   }
 
   const admin = createAdminClient();
@@ -112,13 +112,13 @@ export async function registrarEquipo(
     if (error) {
       // 23505 = violación de unicidad de access_code: reintentamos con otro código.
       if (error.code === "23505") continue;
-      return { success: false, error: "No pudimos registrar el equipo. Probá de nuevo." };
+      return { success: false, error: "No pudimos registrar el equipo. Prueba de nuevo." };
     }
     teamId = data.id;
   }
 
   if (!teamId) {
-    return { success: false, error: "No pudimos generar un código único. Probá de nuevo." };
+    return { success: false, error: "No pudimos generar un código único. Prueba de nuevo." };
   }
 
   const { error: projectError } = await admin.from("projects").insert({ team_id: teamId });

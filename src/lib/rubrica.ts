@@ -28,7 +28,7 @@ export const EJES: EjeRubrica[] = [
     feedback: {
       3: "¡Muy buen trabajo! Identificaste un problema real de tu comunidad con mucha claridad y lo conectaste con los Objetivos de Desarrollo Sostenible. Eso muestra compromiso genuino con generar impacto. ¡Tu enfoque es una base sólida para todo el proyecto!",
       2: "Tu problema tiene mucho potencial. Te recomendamos enfocarlo un poco más: ¿a quién afecta específicamente? ¿Por qué es urgente resolverlo ahora? Conectarlo con un ODS puede darte una dirección más clara.",
-      1: "Es un buen momento para reforzar la definición del problema. Podés conversar con personas de tu comunidad, observar situaciones cotidianas o investigar datos. Cuanto más claro sea el problema, más impacto tendrá tu solución.",
+      1: "Es un buen momento para reforzar la definición del problema. Puedes conversar con personas de tu comunidad, observar situaciones cotidianas o investigar datos. Cuanto más claro sea el problema, más impacto tendrá tu solución.",
     },
   },
   {
@@ -41,7 +41,7 @@ export const EJES: EjeRubrica[] = [
     },
     feedback: {
       3: "¡Excelente! Se nota que trabajaste cada etapa del Design Thinking con dedicación. Definiste claramente a tu usuaria/o y formulaste una pregunta problematizadora desafiante y bien acotada. Esa base metodológica le da solidez a todo tu proyecto.",
-      2: "Aplicaste varias etapas del Design Thinking, ¡eso es un gran avance! Para profundizar, podés revisar la definición de tu usuario/a: ¿qué hace en un día típico? ¿Qué le frustra? Conocerlo/a mejor te va a ayudar a diseñar una solución más acertada.",
+      2: "Aplicaste varias etapas del Design Thinking, ¡eso es un gran avance! Para profundizar, puedes revisar la definición de tu usuario/a: ¿qué hace en un día típico? ¿Qué le frustra? Conocerlo/a mejor te va a ayudar a diseñar una solución más acertada.",
       1: "El Design Thinking es el corazón del proceso de diseño. Te invitamos a retomar las etapas: empezar por empatizar con alguien que viva el problema puede darte ideas que no imaginabas. ¡Cada paso que des suma!",
     },
   },
@@ -55,8 +55,8 @@ export const EJES: EjeRubrica[] = [
     },
     feedback: {
       3: "¡Gran trabajo! Tu prototipo refleja con claridad la solución que imaginaste y muestra cómo los conceptos de IA del programa se integran de manera relevante. La identidad visual le da profesionalismo y lo hace memorable. ¡Estás lista para mostrarlo al mundo!",
-      2: "Tu prototipo muestra una idea con mucho potencial. Para llevarla al siguiente nivel, podés pensar en qué función de IA podría potenciar la experiencia de tu usuaria/o, y seguir refinando el diseño visual. ¡Cada pantalla o sección que agregás hace crecer tu proyecto!",
-      1: "Un prototipo, aunque sea básico, es fundamental para dar vida a tu idea. Podés empezar representando solo la pantalla principal o el flujo más importante. Y recordá: la ruta Chicas en IA tiene herramientas y conceptos de IA que podés incorporar. ¡Animáte a dar ese primer paso!",
+      2: "Tu prototipo muestra una idea con mucho potencial. Para llevarla al siguiente nivel, puedes pensar en qué función de IA podría potenciar la experiencia de tu usuaria/o, y seguir refinando el diseño visual. ¡Cada pantalla o sección que agregas hace crecer tu proyecto!",
+      1: "Un prototipo, aunque sea básico, es fundamental para dar vida a tu idea. Puedes empezar representando solo la pantalla principal o el flujo más importante. Y recuerda: la ruta Chicas en IA tiene herramientas y conceptos de IA que puedes incorporar. ¡Anímate a dar ese primer paso!",
     },
   },
   {
@@ -68,9 +68,9 @@ export const EJES: EjeRubrica[] = [
       1: "El pitch no fue presentado o no logra comunicar con claridad el problema ni la solución. Falta estructura y elementos clave (introducción, propuesta de valor, llamado a la acción).",
     },
     feedback: {
-      3: "¡Tu pitch es claro, persuasivo y genera impacto! Lograste comunicar el problema, la solución y la propuesta de valor con seguridad y entusiasmo. Animarse a presentar —en vivo o grabado— ya es un gran logro. ¡Seguí practicando, tenés una habilidad que va a abrirte muchas puertas!",
-      2: "¡Ya diste el paso más importante: presentar tu proyecto! Para mejorar tu pitch, revisá si están todos los elementos: introducción, problema, solución, propuesta de valor y llamado a la acción. Practicarlo en voz alta o grabándote puede ayudarte a ganar fluidez y confianza.",
-      1: "Comunicar tus ideas es una habilidad que se entrena. Podés empezar preparando una mini presentación con tres preguntas clave: ¿qué problema resolvés?, ¿cómo lo resolvés?, ¿por qué tu solución es diferente? Contarlo con claridad ya es el primer paso para generar impacto.",
+      3: "¡Tu pitch es claro, persuasivo y genera impacto! Lograste comunicar el problema, la solución y la propuesta de valor con seguridad y entusiasmo. Animarse a presentar —en vivo o grabado— ya es un gran logro. ¡Sigue practicando, tienes una habilidad que va a abrirte muchas puertas!",
+      2: "¡Ya diste el paso más importante: presentar tu proyecto! Para mejorar tu pitch, revisa si están todos los elementos: introducción, problema, solución, propuesta de valor y llamado a la acción. Practicarlo en voz alta o grabándote puede ayudarte a ganar fluidez y confianza.",
+      1: "Comunicar tus ideas es una habilidad que se entrena. Puedes empezar preparando una mini presentación con tres preguntas clave: ¿qué problema resuelves?, ¿cómo lo resuelves?, ¿por qué tu solución es diferente? Contarlo con claridad ya es el primer paso para generar impacto.",
     },
   },
 ];

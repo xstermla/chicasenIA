@@ -21,7 +21,7 @@ export default async function PitchPage({
       <div className="mx-auto w-full max-w-md px-6">
         <h1 className="text-2xl font-bold">Pitch de 60 segundos</h1>
         <p className="mt-1 text-foreground/70">
-          Completá estas frases para preparar tu presentación.
+          Completa estas frases para preparar tu presentación.
         </p>
         {project.status === "enviado" && <EnviadoBanner />}
         <PitchForm
@@ -33,11 +33,6 @@ export default async function PitchPage({
             pitch_ia_adentro: project.pitch_ia_adentro ?? "",
             pitch_se_llama_asi_porque:
               project.pitch_se_llama_asi_porque ?? project.nombre_por_que ?? "",
-            ods: project.ods ?? "",
-            evidencia_indagacion: project.evidencia_indagacion ?? "",
-            ficha_usuario: project.ficha_usuario ?? "",
-            prototipo_tipo: project.prototipo_tipo ?? "",
-            prototipo_link: project.prototipo_link ?? "",
           }}
         />
       </div>
