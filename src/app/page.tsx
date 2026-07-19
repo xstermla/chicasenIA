@@ -6,10 +6,7 @@ export default function LandingPage() {
     <main className="flex flex-1 flex-col items-center justify-center px-6 py-12">
       <div className="w-full max-w-md text-center">
         <BrandHeader />
-        <p className="mt-6 text-sm font-semibold uppercase tracking-wide text-brand">
-          Chicas en IA
-        </p>
-        <h1 className="mt-2 text-3xl font-bold leading-tight">
+        <h1 className="mt-6 text-3xl font-bold leading-tight">
           Chicas en IA — Mi idea de app con IA
         </h1>
         <p className="mt-4 text-base text-foreground/80">
@@ -29,7 +26,7 @@ export default function LandingPage() {
             href="/login"
             className="w-full rounded-xl border border-brand/30 bg-brand-light px-6 py-4 text-base font-semibold text-brand-dark transition hover:border-brand/50"
           >
-            Soy docente / evaluadora
+            Docentes/responsables
           </Link>
         </div>
       </div>

@@ -2,18 +2,20 @@ import Image from "next/image";
 
 export default function BrandHeader({ compact = false }: { compact?: boolean }) {
   return (
-    <div className={`flex items-center gap-3 ${compact ? "" : "flex-col text-center"}`}>
+    <div className="flex flex-col items-center gap-2">
       <Image
-        src="/brand/xstem-logo.svg"
-        alt="XSTEM"
-        width={compact ? 84 : 120}
-        height={compact ? 27 : 38}
-        unoptimized
+        src="/brand/chicas-en-ia-logo.png"
+        alt="Chicas en IA — creando un futuro sostenible"
+        width={compact ? 160 : 220}
+        height={compact ? 39 : 54}
         priority
       />
-      <p className="text-xs text-foreground/60">
-        En colaboración con <span className="font-semibold">IBM SkillsBuild</span>
-      </p>
+      <div className="flex items-center gap-2">
+        <Image src="/brand/xstem-logo.svg" alt="XSTEM" width={56} height={18} unoptimized />
+        <p className="text-xs text-foreground/60">
+          + <span className="font-semibold">IBM SkillsBuild</span>
+        </p>
+      </div>
     </div>
   );
 }
