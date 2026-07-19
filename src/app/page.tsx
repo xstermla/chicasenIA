@@ -7,7 +7,7 @@ export default function LandingPage() {
       <div className="w-full max-w-md text-center">
         <BrandHeader />
         <h1 className="mt-6 text-3xl font-bold leading-tight">
-          Chicas en IA — Mi idea de app con IA
+          Mi Proyecto/App
         </h1>
         <p className="mt-4 text-base text-foreground/80">
           Aquí tu equipo puede cargar su idea de app con IA: el problema que

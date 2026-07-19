@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Chicas en IA — Mi idea de app con IA",
+  title: "Chicas en IA — Mi Proyecto/App",
   description:
     "Chicas en IA — Gestión de proyectos de equipos de estudiantes (XSTEM + IBM SkillsBuild).",
 };
