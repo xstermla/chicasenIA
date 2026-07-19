@@ -9,11 +9,14 @@ export default async function PanelLayout({ children }: { children: React.ReactN
     <div className="flex flex-1 flex-col">
       <header className="flex items-center justify-between border-b border-black/10 px-4 py-3">
         <div className="flex items-center gap-3">
-          <Image src="/brand/xstem-logo.svg" alt="XSTEM" width={64} height={20} unoptimized />
-          <div>
-            <p className="text-sm font-semibold text-brand-dark">Chicas en IA</p>
-            <p className="text-xs text-foreground/60">{profile.full_name ?? "Panel"}</p>
-          </div>
+          <Image
+            src="/brand/chicas-en-ia-logo.png"
+            alt="Chicas en IA"
+            width={120}
+            height={30}
+          />
+          <Image src="/brand/xstem-logo.svg" alt="XSTEM" width={84} height={27} unoptimized />
+          <p className="text-xs text-foreground/60">{profile.full_name ?? "Panel"}</p>
         </div>
         <form action={logout}>
           <button
