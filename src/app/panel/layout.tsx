@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { getPerfilActual } from "./data";
 import { logout } from "@/app/login/actions";
 
@@ -18,19 +19,27 @@ export default async function PanelLayout({ children }: { children: React.ReactN
           <Image src="/brand/xstem-logo.svg" alt="XSTEM" width={84} height={27} unoptimized />
           <p className="text-xs text-foreground/60">{profile.full_name ?? "Panel"}</p>
         </div>
-        <form action={logout}>
-          <button
-            type="submit"
+        <div className="flex items-center gap-2">
+          <Link
+            href="/panel/ayuda"
             className="rounded-lg border border-black/15 px-3 py-2 text-sm font-medium"
           >
-            Cerrar sesión
-          </button>
-        </form>
+            Ayuda
+          </Link>
+          <form action={logout}>
+            <button
+              type="submit"
+              className="rounded-lg border border-black/15 px-3 py-2 text-sm font-medium"
+            >
+              Cerrar sesión
+            </button>
+          </form>
+        </div>
       </header>
       {!profile.institution_id && profile.role !== "admin" ? (
         <main className="flex flex-1 items-center justify-center px-6 py-12 text-center">
           <p className="max-w-sm text-foreground/70">
-            Tu cuenta todavía no tiene una institución asignada. Pedile a la
+            Tu cuenta todavía no tiene una institución asignada. Pídele a la
             administradora del programa que la configure.
           </p>
         </main>
