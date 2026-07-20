@@ -5,7 +5,7 @@ export default function SiteFooter() {
   return (
     <footer className="border-t border-black/10 px-4 py-6 text-center">
       <div className="mx-auto flex max-w-2xl flex-col items-center gap-2">
-        <div className="flex items-center gap-3">
+        <div className="flex w-full max-w-xs items-center justify-between gap-4">
           <Image src="/brand/chicas-en-ia-logo.png" alt="Chicas en IA" width={100} height={25} />
           <Image src="/brand/xstem-logo.svg" alt="XSTEM" width={60} height={19} unoptimized />
         </div>
