@@ -27,7 +27,7 @@ export default async function PanelPage() {
           </p>
         ) : (
           <div className="mt-6 overflow-x-auto rounded-xl border border-black/10">
-            <table className="w-full min-w-[720px] border-collapse text-sm">
+            <table className="w-full min-w-[820px] border-collapse text-sm">
               <thead>
                 <tr className="border-b border-black/10 bg-brand-light/40 text-left">
                   <th className="px-4 py-3 font-semibold">Equipo</th>
@@ -39,19 +39,13 @@ export default async function PanelPage() {
                   <th className="px-3 py-3 text-center font-semibold">Eje 4</th>
                   <th className="px-3 py-3 text-center font-semibold">Total</th>
                   <th className="px-4 py-3 font-semibold">Escala</th>
+                  <th className="px-4 py-3 font-semibold">Evaluar</th>
                 </tr>
               </thead>
               <tbody>
                 {equipos.map(({ team, cohort, project, miEvaluacion }) => (
                   <tr key={team.id} className="border-b border-black/5 last:border-0">
-                    <td className="px-4 py-3 font-medium">
-                      <Link
-                        href={project ? `/panel/proyecto/${project.id}` : "#"}
-                        className="hover:text-brand-dark hover:underline"
-                      >
-                        {team.team_name}
-                      </Link>
-                    </td>
+                    <td className="px-4 py-3 font-medium">{team.team_name}</td>
                     <td className="px-4 py-3 text-foreground/60">{cohort?.name ?? "—"}</td>
                     <td className="px-4 py-3">
                       <span
@@ -73,6 +67,16 @@ export default async function PanelPage() {
                     </td>
                     <td className="px-4 py-3 text-foreground/60">
                       {miEvaluacion ? escalaLabel(miEvaluacion.total_score) : "Sin evaluar"}
+                    </td>
+                    <td className="px-4 py-3">
+                      {project && (
+                        <Link
+                          href={`/panel/proyecto/${project.id}`}
+                          className="inline-block rounded-lg bg-brand px-3 py-2 text-xs font-semibold text-white transition hover:bg-brand-dark"
+                        >
+                          {miEvaluacion ? "Ver / editar" : "Evaluar"}
+                        </Link>
+                      )}
                     </td>
                   </tr>
                 ))}
