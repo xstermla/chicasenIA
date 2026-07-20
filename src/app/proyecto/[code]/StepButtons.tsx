@@ -12,7 +12,7 @@ export default function StepButtons({ nextHref }: { nextHref?: string }) {
         name="next"
         value=""
         disabled={pending}
-        className="w-full rounded-xl border border-brand/40 bg-brand-light px-6 py-4 text-base font-semibold text-brand-dark transition hover:border-brand/60 disabled:opacity-60"
+        className="w-full rounded-2xl border-2 border-brand/30 bg-brand-light px-6 py-4 text-base font-semibold text-brand-dark transition hover:border-brand/50 disabled:opacity-60"
       >
         Guardar y seguir después
       </button>
@@ -22,9 +22,10 @@ export default function StepButtons({ nextHref }: { nextHref?: string }) {
           name="next"
           value={nextHref}
           disabled={pending}
-          className="w-full rounded-xl bg-brand px-6 py-4 text-base font-semibold text-white shadow-sm transition hover:bg-brand-dark disabled:opacity-60"
+          style={{ backgroundImage: "var(--brand-gradient)" }}
+          className="w-full rounded-2xl px-6 py-4 text-base font-bold text-white shadow-lg shadow-brand/25 transition active:scale-[0.98] disabled:opacity-60"
         >
-          Siguiente
+          Siguiente →
         </button>
       )}
     </div>

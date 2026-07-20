@@ -3,10 +3,23 @@ import BrandHeader from "@/components/BrandHeader";
 
 export default function LandingPage() {
   return (
-    <main className="flex flex-1 flex-col items-center justify-center px-6 py-12">
-      <div className="w-full max-w-md text-center">
+    <main className="relative flex flex-1 flex-col items-center justify-center overflow-hidden px-6 py-12">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -top-24 -left-24 h-64 w-64 rounded-full bg-brand-orange/25 blur-3xl"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute top-10 -right-20 h-72 w-72 rounded-full bg-brand-green/20 blur-3xl"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -bottom-28 left-1/3 h-64 w-64 rounded-full bg-brand-red/15 blur-3xl"
+      />
+
+      <div className="relative w-full max-w-md text-center">
         <BrandHeader />
-        <h1 className="mt-6 text-3xl font-bold leading-tight">
+        <h1 className="mt-6 text-4xl font-extrabold leading-[1.05] text-balance">
           Mi Proyecto/App
         </h1>
         <p className="mt-4 text-base text-foreground/80">
@@ -18,19 +31,20 @@ export default function LandingPage() {
         <div className="mt-8 flex flex-col gap-3">
           <Link
             href="/registro"
-            className="w-full rounded-xl bg-brand px-6 py-4 text-base font-semibold text-white shadow-sm transition hover:bg-brand-dark active:scale-[0.99]"
+            style={{ backgroundImage: "var(--brand-gradient)" }}
+            className="w-full rounded-2xl px-6 py-4 text-base font-bold text-white shadow-lg shadow-brand/25 transition active:scale-[0.98]"
           >
-            Registrar mi equipo
+            Registrar mi equipo 🚀
           </Link>
           <Link
             href="/login"
-            className="w-full rounded-xl border border-brand/30 bg-brand-light px-6 py-4 text-base font-semibold text-brand-dark transition hover:border-brand/50"
+            className="w-full rounded-2xl border-2 border-brand/25 bg-brand-light px-6 py-4 text-base font-semibold text-brand-dark transition hover:border-brand/50"
           >
             Docentes/responsables
           </Link>
           <Link
             href="/ayuda"
-            className="w-full rounded-xl px-6 py-3 text-sm font-semibold text-brand-dark underline"
+            className="w-full rounded-2xl px-6 py-3 text-sm font-semibold text-brand-dark underline decoration-brand-orange decoration-2 underline-offset-4"
           >
             Sobre el programa
           </Link>

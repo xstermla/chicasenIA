@@ -24,14 +24,15 @@ export default function RegistroForm() {
     };
 
     return (
-      <div className="mt-8 rounded-2xl border border-brand/30 bg-brand-light p-6 text-center">
-        <p className="text-sm font-medium text-brand-dark">Equipo {state.teamName}</p>
+      <div className="mt-8 rounded-2xl border-2 border-brand/25 bg-brand-light p-6 text-center">
+        <p className="text-sm font-medium text-brand-dark">Equipo {state.teamName} 🎉</p>
         <p className="mt-4 text-4xl font-mono font-bold tracking-[0.3em] text-brand-dark">
           {state.accessCode}
         </p>
         <button
           onClick={copiarCodigo}
-          className="mt-4 w-full rounded-xl bg-brand px-4 py-3 font-semibold text-white transition hover:bg-brand-dark"
+          style={{ backgroundImage: "var(--brand-gradient)" }}
+          className="mt-4 w-full rounded-2xl px-4 py-3 font-bold text-white shadow-lg shadow-brand/25 transition active:scale-[0.98]"
         >
           {copiado ? "¡Copiado!" : "Copiar"}
         </button>
@@ -104,7 +105,8 @@ export default function RegistroForm() {
       <button
         type="submit"
         disabled={pending}
-        className="mt-2 w-full rounded-xl bg-brand px-6 py-4 text-base font-semibold text-white shadow-sm transition hover:bg-brand-dark disabled:opacity-60"
+        style={{ backgroundImage: "var(--brand-gradient)" }}
+        className="mt-2 w-full rounded-2xl px-6 py-4 text-base font-bold text-white shadow-lg shadow-brand/25 transition active:scale-[0.98] disabled:opacity-60"
       >
         {pending ? "Registrando..." : "Registrar equipo"}
       </button>

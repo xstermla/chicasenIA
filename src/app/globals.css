@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #3a3a3c;
+  --background: #fffdfb;
+  --foreground: #2b2230;
   /* Paleta de marca XSTEM (tomada del logo oficial) */
   --brand: #7f3f98;
   --brand-dark: #662d91;
@@ -10,6 +10,7 @@
   --brand-orange: #f7941d;
   --brand-green: #00a14b;
   --brand-red: #ed1c24;
+  --brand-gradient: linear-gradient(135deg, #7f3f98 0%, #662d91 60%, #4f2170 100%);
 }
 
 @theme inline {
@@ -27,16 +28,47 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #17151a;
-    --foreground: #f2eef5;
-    --brand: #b07bc4;
-    --brand-dark: #d4b3e0;
-    --brand-light: #2e2434;
+    --background: #1a1520;
+    --foreground: #f4eef8;
+    --brand: #c294d6;
+    --brand-dark: #e0c2ee;
+    --brand-light: #2e2438;
+    --brand-orange: #ffb04d;
+    --brand-green: #4ad893;
+    --brand-red: #ff6b71;
+    --brand-gradient: linear-gradient(135deg, #9457b5 0%, #7a3a99 60%, #5c2a7a 100%);
   }
+}
+
+:root[data-theme="dark"] {
+  --background: #1a1520;
+  --foreground: #f4eef8;
+  --brand: #c294d6;
+  --brand-dark: #e0c2ee;
+  --brand-light: #2e2438;
+  --brand-orange: #ffb04d;
+  --brand-green: #4ad893;
+  --brand-red: #ff6b71;
+  --brand-gradient: linear-gradient(135deg, #9457b5 0%, #7a3a99 60%, #5c2a7a 100%);
+}
+:root[data-theme="light"] {
+  --background: #fffdfb;
+  --foreground: #2b2230;
+  --brand: #7f3f98;
+  --brand-dark: #662d91;
+  --brand-light: #f2e9f7;
+  --brand-orange: #f7941d;
+  --brand-green: #00a14b;
+  --brand-red: #ed1c24;
+  --brand-gradient: linear-gradient(135deg, #7f3f98 0%, #662d91 60%, #4f2170 100%);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+h1, h2 {
+  letter-spacing: -0.02em;
 }
