@@ -28,6 +28,12 @@ export default function LandingPage() {
           >
             Docentes/responsables
           </Link>
+          <Link
+            href="/ayuda"
+            className="w-full rounded-xl px-6 py-3 text-sm font-semibold text-brand-dark underline"
+          >
+            Sobre el programa
+          </Link>
         </div>
       </div>
     </main>

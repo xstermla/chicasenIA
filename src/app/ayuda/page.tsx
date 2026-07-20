@@ -1,11 +1,15 @@
+import Link from "next/link";
+import BrandHeader from "@/components/BrandHeader";
+
 export default function AyudaPage() {
   return (
-    <main className="flex flex-1 flex-col px-4 py-6">
-      <div className="mx-auto w-full max-w-2xl">
-        <h1 className="text-2xl font-bold">Ayuda para docentes</h1>
+    <main className="flex flex-1 flex-col items-center px-4 py-8">
+      <div className="w-full max-w-2xl">
+        <BrandHeader compact />
+        <h1 className="mt-4 text-2xl font-bold">Sobre el programa</h1>
         <p className="mt-2 text-foreground/70">
-          Qué es Chicas en IA, cómo se llega hasta acá y dónde encontrar más
-          información del programa.
+          Qué es Chicas en IA, cómo se llega hasta esta plataforma y dónde
+          encontrar más información.
         </p>
 
         <div className="mt-6 flex flex-col gap-4">
@@ -67,21 +71,21 @@ export default function AyudaPage() {
 
           <section className="rounded-xl border border-black/10 p-5">
             <h2 className="text-lg font-bold text-brand-dark">
-              Cómo evaluar en esta plataforma
+              Para docentes: cómo evaluar
             </h2>
             <ol className="mt-2 flex flex-col gap-2 text-sm text-foreground/80">
               <li>
                 1. En <span className="font-semibold">Equipos</span> (panel
-                principal), tocá <span className="font-semibold">Evaluar</span>{" "}
+                principal), toca <span className="font-semibold">Evaluar</span>{" "}
                 en el equipo que quieras revisar.
               </li>
               <li>
-                2. Elegí un nivel (Logrado / En proceso / Por desarrollar)
+                2. Elige un nivel (Logrado / En proceso / Por desarrollar)
                 para cada uno de los 4 ejes de la rúbrica.
               </li>
-              <li>3. Ajustá el feedback sugerido si querés, y guardá.</li>
+              <li>3. Ajusta el feedback sugerido si quieres, y guarda.</li>
               <li>
-                4. Desde <span className="font-semibold">Equipos</span> podés
+                4. Desde <span className="font-semibold">Equipos</span> puedes
                 exportar todo a Excel.
               </li>
             </ol>
@@ -90,7 +94,7 @@ export default function AyudaPage() {
           <section className="rounded-xl border border-black/10 bg-brand-light/40 p-5">
             <h2 className="text-lg font-bold text-brand-dark">¿Dudas?</h2>
             <p className="mt-2 text-sm text-foreground/80">
-              Escribí a{" "}
+              Escribe a{" "}
               <a href="mailto:programas@xstemla.com" className="font-semibold underline">
                 programas@xstemla.com
               </a>{" "}
@@ -107,6 +111,13 @@ export default function AyudaPage() {
             </p>
           </section>
         </div>
+
+        <Link
+          href="/"
+          className="mt-6 inline-block text-sm font-semibold text-brand-dark underline"
+        >
+          ← Volver al inicio
+        </Link>
       </div>
     </main>
   );
