@@ -2,7 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { createAdminClient } from "@/lib/supabase/admin";
-import { getEquipoYProyecto } from "./data";
+import { getEquipoYProyecto, type EquipoYProyecto } from "./data";
 import type { Project } from "@/lib/database.types";
 
 export interface GuardarState {
@@ -26,6 +26,20 @@ function campoTexto(formData: FormData, campo: string): string | null {
   return s.length ? s : null;
 }
 
+async function aplicarActualizacion(
+  equipo: EquipoYProyecto,
+  patch: Partial<Project>
+): Promise<{ error?: string }> {
+  const admin = createAdminClient();
+  const { error } = await admin
+    .from("projects")
+    .update(patch)
+    .eq("team_id", equipo.team.id);
+
+  if (error) return { error: "No pudimos guardar. Prueba de nuevo." };
+  return {};
+}
+
 async function actualizarProyecto(
   code: string,
   patch: Partial<Project>
@@ -36,14 +50,7 @@ async function actualizarProyecto(
     return { error: "Este proyecto ya fue enviado. Pídele a tu docente que lo reabra para editarlo." };
   }
 
-  const admin = createAdminClient();
-  const { error } = await admin
-    .from("projects")
-    .update(patch)
-    .eq("team_id", equipo.team.id);
-
-  if (error) return { error: "No pudimos guardar. Prueba de nuevo." };
-  return {};
+  return aplicarActualizacion(equipo, patch);
 }
 
 async function siguienteORedirect(formData: FormData) {
@@ -132,12 +139,27 @@ export async function enviarProyecto(code: string, _prev: EnviarState): Promise<
 }
 
 export async function guardarPitch(code: string, _prev: GuardarState, formData: FormData) {
-  const { error } = await actualizarProyecto(code, {
-    pitch_se_llama: campoTexto(formData, "pitch_se_llama"),
+  const equipo = await getEquipoYProyecto(code);
+  if (!equipo) return { error: "Código inválido." };
+  if (equipo.project.status === "enviado") {
+    return { error: "Este proyecto ya fue enviado. Pídele a tu docente que lo reabra para editarlo." };
+  }
+
+  const seLlama = campoTexto(formData, "pitch_se_llama");
+  const seLlamaAsiPorque = campoTexto(formData, "pitch_se_llama_asi_porque");
+
+  // Si el equipo no cambió estas dos frases respecto de lo que ya
+  // tenían en el Paso 5, no las "fijamos": las guardamos como null para
+  // que sigan mostrando siempre el valor más reciente de nombre_app /
+  // nombre_por_que (si no, un cambio posterior en el Paso 5 nunca se
+  // reflejaba acá, porque el pitch ya tenía guardado el nombre viejo).
+  const { error } = await aplicarActualizacion(equipo, {
+    pitch_se_llama: seLlama === equipo.project.nombre_app ? null : seLlama,
     pitch_la_creamos_para: campoTexto(formData, "pitch_la_creamos_para"),
     pitch_problema_resuelve: campoTexto(formData, "pitch_problema_resuelve"),
     pitch_ia_adentro: campoTexto(formData, "pitch_ia_adentro"),
-    pitch_se_llama_asi_porque: campoTexto(formData, "pitch_se_llama_asi_porque"),
+    pitch_se_llama_asi_porque:
+      seLlamaAsiPorque === equipo.project.nombre_por_que ? null : seLlamaAsiPorque,
   });
   if (error) return { error };
 

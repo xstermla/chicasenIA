@@ -22,6 +22,25 @@ export default async function GraciasPage({
           Esta idea es de ustedes. Pueden seguir desarrollándola en la
           plataforma y en la comunidad.
         </p>
+        <p className="mt-4 text-base text-foreground/80">
+          Ahora vamos a revisar tu proyecto y te vamos a dar una devolución.
+        </p>
+        <p className="mt-4 text-sm text-foreground/60">
+          Ante cualquier duda, escríbenos a{" "}
+          <a href="mailto:programas@xstemla.com" className="font-semibold text-brand-dark underline">
+            programas@xstemla.com
+          </a>{" "}
+          o por{" "}
+          <a
+            href="https://wa.me/5491139317273"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold text-brand-dark underline"
+          >
+            WhatsApp
+          </a>
+          .
+        </p>
       </div>
     </main>
   );
