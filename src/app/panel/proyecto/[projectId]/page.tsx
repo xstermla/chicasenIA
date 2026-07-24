@@ -58,6 +58,21 @@ export default async function ProyectoDetallePage({
               />
             </div>
           )}
+          {project.prototipo_link && (
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wide text-foreground/50">
+                Prototipo{project.prototipo_tipo ? ` (${project.prototipo_tipo})` : ""}
+              </p>
+              <a
+                href={project.prototipo_link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-1 inline-block break-all text-sm font-semibold text-brand-dark underline"
+              >
+                {project.prototipo_link}
+              </a>
+            </div>
+          )}
           <Campo label="Nombre de la app" valor={project.nombre_app} />
           <Campo label="Por qué ese nombre" valor={project.nombre_por_que} />
 
@@ -66,12 +81,29 @@ export default async function ProyectoDetallePage({
             <p className="mt-2 whitespace-pre-wrap text-sm">
               {project.pitch_se_llama && `Nuestra app se llama ${project.pitch_se_llama}. `}
               {project.pitch_la_creamos_para && `La creamos para ${project.pitch_la_creamos_para}. `}
-              {project.pitch_problema_resuelve &&
-                `El problema que resuelve es ${project.pitch_problema_resuelve}. `}
               {project.pitch_ia_adentro && `La IA adentro: ${project.pitch_ia_adentro}. `}
               {project.pitch_se_llama_asi_porque &&
                 `Se llama así porque ${project.pitch_se_llama_asi_porque}.`}
             </p>
+            {project.pitch_problema_resuelve && (
+              <p className="mt-3 whitespace-pre-wrap border-t border-brand/15 pt-3 text-sm">
+                <span className="font-semibold">Más sobre la app: </span>
+                {project.pitch_problema_resuelve}
+              </p>
+            )}
+            {project.pitch_video_link && (
+              <p className="mt-3 border-t border-brand/15 pt-3 text-sm">
+                <span className="font-semibold">Video: </span>
+                <a
+                  href={project.pitch_video_link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="break-all text-brand-dark underline"
+                >
+                  {project.pitch_video_link}
+                </a>
+              </p>
+            )}
           </div>
         </div>
 

@@ -33,6 +33,7 @@ export default async function PitchPage({
             pitch_ia_adentro: project.pitch_ia_adentro ?? "",
             pitch_se_llama_asi_porque:
               project.pitch_se_llama_asi_porque ?? project.nombre_por_que ?? "",
+            pitch_video_link: project.pitch_video_link ?? "",
           }}
         />
       </div>

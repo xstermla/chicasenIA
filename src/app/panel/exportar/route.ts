@@ -62,11 +62,14 @@ export async function GET(request: NextRequest) {
     { header: "Qué haría la IA", key: "ia_funciones", width: 40 },
     { header: "Nombre de la app", key: "nombre_app", width: 20 },
     { header: "Por qué ese nombre", key: "nombre_por_que", width: 40 },
+    { header: "Prototipo (tipo)", key: "prototipo_tipo", width: 14 },
+    { header: "Prototipo (link)", key: "prototipo_link", width: 30 },
     { header: "Pitch: se llama", key: "pitch_se_llama", width: 20 },
     { header: "Pitch: la creamos para", key: "pitch_la_creamos_para", width: 34 },
-    { header: "Pitch: problema que resuelve", key: "pitch_problema_resuelve", width: 34 },
+    { header: "Pitch: más detalles", key: "pitch_problema_resuelve", width: 34 },
     { header: "Pitch: la IA adentro", key: "pitch_ia_adentro", width: 34 },
     { header: "Pitch: se llama así porque", key: "pitch_se_llama_asi_porque", width: 34 },
+    { header: "Pitch: video", key: "pitch_video_link", width: 30 },
     { header: "Eje 1 - Problema", key: "eje1", width: 16 },
     { header: "Eje 2 - Design Thinking", key: "eje2", width: 18 },
     { header: "Eje 3 - Prototipo", key: "eje3", width: 16 },
@@ -110,11 +113,14 @@ export async function GET(request: NextRequest) {
       ia_funciones: funciones,
       nombre_app: project?.nombre_app ?? "",
       nombre_por_que: project?.nombre_por_que ?? "",
+      prototipo_tipo: project?.prototipo_tipo ?? "",
+      prototipo_link: project?.prototipo_link ?? "",
       pitch_se_llama: project?.pitch_se_llama ?? "",
       pitch_la_creamos_para: project?.pitch_la_creamos_para ?? "",
       pitch_problema_resuelve: project?.pitch_problema_resuelve ?? "",
       pitch_ia_adentro: project?.pitch_ia_adentro ?? "",
       pitch_se_llama_asi_porque: project?.pitch_se_llama_asi_porque ?? "",
+      pitch_video_link: project?.pitch_video_link ?? "",
       eje1: ev?.score_eje1 ?? "",
       eje2: ev?.score_eje2 ?? "",
       eje3: ev?.score_eje3 ?? "",
@@ -125,7 +131,7 @@ export async function GET(request: NextRequest) {
     row.alignment = { wrapText: true, vertical: "top" };
   }
 
-  sheet.autoFilter = { from: "A1", to: "X1" };
+  sheet.autoFilter = { from: "A1", to: "AA1" };
   sheet.views = [{ state: "frozen", ySplit: 1 }];
 
   const buffer = await workbook.xlsx.writeBuffer();

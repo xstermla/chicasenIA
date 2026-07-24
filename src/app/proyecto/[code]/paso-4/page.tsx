@@ -25,7 +25,12 @@ export default async function Paso4Page({
           pantalla principal de tu app.
         </p>
         {equipo.project.status === "enviado" && <EnviadoBanner />}
-        <Paso4Form code={code} bocetoUrlInicial={bocetoUrl} />
+        <Paso4Form
+          code={code}
+          bocetoUrlInicial={bocetoUrl}
+          prototipoTipoInicial={equipo.project.prototipo_tipo ?? ""}
+          prototipoLinkInicial={equipo.project.prototipo_link ?? ""}
+        />
       </div>
     </main>
   );

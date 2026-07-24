@@ -78,6 +78,7 @@ export interface Project {
   pitch_problema_resuelve: string | null;
   pitch_ia_adentro: string | null;
   pitch_se_llama_asi_porque: string | null;
+  pitch_video_link: string | null;
   ods: string | null;
   evidencia_indagacion: string | null;
   ficha_usuario: string | null;
@@ -231,6 +232,7 @@ export interface Database {
           pitch_problema_resuelve: string | null;
           pitch_ia_adentro: string | null;
           pitch_se_llama_asi_porque: string | null;
+          pitch_video_link: string | null;
           ods: string | null;
           evidencia_indagacion: string | null;
           ficha_usuario: string | null;
@@ -255,6 +257,7 @@ export interface Database {
           pitch_problema_resuelve?: string | null;
           pitch_ia_adentro?: string | null;
           pitch_se_llama_asi_porque?: string | null;
+          pitch_video_link?: string | null;
           ods?: string | null;
           evidencia_indagacion?: string | null;
           ficha_usuario?: string | null;
@@ -279,6 +282,7 @@ export interface Database {
           pitch_problema_resuelve?: string | null;
           pitch_ia_adentro?: string | null;
           pitch_se_llama_asi_porque?: string | null;
+          pitch_video_link?: string | null;
           ods?: string | null;
           evidencia_indagacion?: string | null;
           ficha_usuario?: string | null;

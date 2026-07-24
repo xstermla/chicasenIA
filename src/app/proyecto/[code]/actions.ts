@@ -91,6 +91,17 @@ export async function guardarPaso3(code: string, _prev: GuardarState, formData: 
   return { guardado: true };
 }
 
+export async function guardarPrototipo(code: string, _prev: GuardarState, formData: FormData) {
+  const prototipoTipo = campoTexto(formData, "prototipo_tipo");
+
+  const { error } = await actualizarProyecto(code, {
+    prototipo_tipo: (prototipoTipo as Project["prototipo_tipo"]) ?? null,
+    prototipo_link: campoTexto(formData, "prototipo_link"),
+  });
+  if (error) return { error };
+  return { guardado: true };
+}
+
 export async function guardarPaso5(code: string, _prev: GuardarState, formData: FormData) {
   const { error } = await actualizarProyecto(code, {
     nombre_app: campoTexto(formData, "nombre_app"),
@@ -160,6 +171,7 @@ export async function guardarPitch(code: string, _prev: GuardarState, formData: 
     pitch_ia_adentro: campoTexto(formData, "pitch_ia_adentro"),
     pitch_se_llama_asi_porque:
       seLlamaAsiPorque === equipo.project.nombre_por_que ? null : seLlamaAsiPorque,
+    pitch_video_link: campoTexto(formData, "pitch_video_link"),
   });
   if (error) return { error };
 
