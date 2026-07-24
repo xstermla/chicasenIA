@@ -21,6 +21,8 @@ export interface Institution {
   name: string;
   contact_teacher_name: string | null;
   contact_email: string | null;
+  country: string | null;
+  city: string | null;
   created_at: string;
 }
 
@@ -114,6 +116,8 @@ export interface Database {
           name: string;
           contact_teacher_name: string | null;
           contact_email: string | null;
+          country: string | null;
+          city: string | null;
           created_at: string;
         };
         Insert: {
@@ -121,6 +125,8 @@ export interface Database {
           name: string;
           contact_teacher_name?: string | null;
           contact_email?: string | null;
+          country?: string | null;
+          city?: string | null;
           created_at?: string;
         };
         Update: {
@@ -128,6 +134,8 @@ export interface Database {
           name?: string;
           contact_teacher_name?: string | null;
           contact_email?: string | null;
+          country?: string | null;
+          city?: string | null;
           created_at?: string;
         };
         Relationships: [];

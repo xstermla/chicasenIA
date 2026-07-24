@@ -10,20 +10,35 @@ const COHORTE_ACTUAL = "2026";
 
 async function obtenerOCrearInstitucion(
   admin: ReturnType<typeof createAdminClient>,
-  nombre: string
+  nombre: string,
+  country: string | null,
+  city: string | null
 ): Promise<{ id: string } | { error: string }> {
   const { data: existente, error: buscarError } = await admin
     .from("institutions")
-    .select("id")
+    .select("id, country, city")
     .ilike("name", nombre)
     .maybeSingle();
 
   if (buscarError) return { error: "No pudimos validar la institución. Prueba de nuevo." };
-  if (existente) return { id: existente.id };
+
+  if (existente) {
+    // Completamos país/ciudad si la institución ya existía pero no los tenía cargados.
+    if ((!existente.country && country) || (!existente.city && city)) {
+      await admin
+        .from("institutions")
+        .update({
+          country: existente.country ?? country,
+          city: existente.city ?? city,
+        })
+        .eq("id", existente.id);
+    }
+    return { id: existente.id };
+  }
 
   const { data: nueva, error: crearError } = await admin
     .from("institutions")
-    .insert({ name: nombre })
+    .insert({ name: nombre, country, city })
     .select("id")
     .single();
 
@@ -68,6 +83,8 @@ export async function registrarEquipo(
 ): Promise<RegistrarEquipoState> {
   const teamName = String(formData.get("team_name") ?? "").trim();
   const institutionName = String(formData.get("institution") ?? "").trim();
+  const country = String(formData.get("country") ?? "").trim() || null;
+  const city = String(formData.get("city") ?? "").trim() || null;
   const membersRaw = String(formData.get("members") ?? "");
 
   const members = membersRaw
@@ -81,13 +98,19 @@ export async function registrarEquipo(
   if (!institutionName) {
     return { success: false, error: "Falta el nombre de la institución." };
   }
+  if (!country) {
+    return { success: false, error: "Falta el país." };
+  }
+  if (!city) {
+    return { success: false, error: "Falta la ciudad." };
+  }
   if (members.length === 0) {
     return { success: false, error: "Suma al menos una integrante del equipo." };
   }
 
   const admin = createAdminClient();
 
-  const institucion = await obtenerOCrearInstitucion(admin, institutionName);
+  const institucion = await obtenerOCrearInstitucion(admin, institutionName, country, city);
   if ("error" in institucion) return { success: false, error: institucion.error };
 
   const cohorte = await obtenerOCrearCohorte(admin, institucion.id);

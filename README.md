@@ -15,6 +15,7 @@ Storage).
    1. `01_schema.sql`
    2. `02_policies.sql`
    3. `03_storage.sql`
+   4. `04_pais_ciudad.sql`
 3. En **Project Settings → API** copiá `Project URL`, `anon public key` y
    `service_role key`.
 

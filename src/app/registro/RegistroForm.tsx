@@ -77,6 +77,31 @@ export default function RegistroForm() {
         />
       </div>
 
+      <div className="grid grid-cols-2 gap-3">
+        <div>
+          <label htmlFor="country" className="block text-sm font-semibold">
+            País
+          </label>
+          <input
+            id="country"
+            name="country"
+            required
+            className="mt-1 w-full rounded-lg border border-black/15 px-3 py-3 text-base"
+          />
+        </div>
+        <div>
+          <label htmlFor="city" className="block text-sm font-semibold">
+            Ciudad
+          </label>
+          <input
+            id="city"
+            name="city"
+            required
+            className="mt-1 w-full rounded-lg border border-black/15 px-3 py-3 text-base"
+          />
+        </div>
+      </div>
+
       <div>
         <label htmlFor="members" className="block text-sm font-semibold">
           Integrantes del grupo

@@ -50,6 +50,8 @@ export async function GET(request: NextRequest) {
   const sheet = workbook.addWorksheet("Equipos");
   sheet.columns = [
     { header: "Institución", key: "institucion", width: 20 },
+    { header: "País", key: "country", width: 14 },
+    { header: "Ciudad", key: "city", width: 16 },
     { header: "Cohorte", key: "cohorte", width: 12 },
     { header: "Equipo", key: "equipo", width: 22 },
     { header: "Integrantes", key: "integrantes", width: 30 },
@@ -94,6 +96,8 @@ export async function GET(request: NextRequest) {
 
     const row = sheet.addRow({
       institucion: institution?.name ?? "",
+      country: institution?.country ?? "",
+      city: institution?.city ?? "",
       cohorte: cohort?.name ?? "",
       equipo: team.team_name,
       integrantes: (team.members ?? []).join(" / "),
@@ -121,7 +125,7 @@ export async function GET(request: NextRequest) {
     row.alignment = { wrapText: true, vertical: "top" };
   }
 
-  sheet.autoFilter = { from: "A1", to: "V1" };
+  sheet.autoFilter = { from: "A1", to: "X1" };
   sheet.views = [{ state: "frozen", ySplit: 1 }];
 
   const buffer = await workbook.xlsx.writeBuffer();
